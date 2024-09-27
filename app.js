@@ -7,6 +7,9 @@ const data = require("./6-alternative-flavor");
 
 console.log(data);
 
+//When we have a function inside the module that we invoke, we can run it even if we don't export it
+require("./7-mind-grenade");
+
 sayHi("susan");
 sayHi(names.john);
 sayHi(names.peter);
