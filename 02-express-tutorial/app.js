@@ -5,13 +5,18 @@ const app = express();
 //setup static and middleware
 //static asset - file that server does not have to change, left in a specific folder
 //img file, style file, js file
-app.use(express.static("./public"));
 
+const logger = require("./logger.js");
+const authorize = require("./authorize.js");
+app.use([logger, authorize]);
+
+//Here logger is the middleware
 app.get("/", (req, res) => {
-	console.log("user hit the resource");
+	res.send("Home");
+});
 
-	//index.html can be added to static assets or Server Side Rendering
-	// res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
+app.get("/about", (req, res) => {
+	res.send("About");
 });
 
 app.all("*", (req, res) => {
@@ -19,7 +24,7 @@ app.all("*", (req, res) => {
 });
 
 app.listen(6060, () => {
-	console.log("server is listening on port 5000...");
+	console.log("server is listening on port 6060...");
 });
 
 //app.get
